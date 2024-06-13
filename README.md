@@ -13,7 +13,7 @@ Any [MPI](https://www.mpi-forum.org/) libaries are also required if you would li
 You can retrieve the current status of **braket** by cloning the repository:
 
 ```bash
-$ git clone --recursive https://github.com/naoki-yoshioka/braket.git
+$ git clone --recursive https://github.com/mdepasca/braket.git
 ```
 
 ## Using *bra*
