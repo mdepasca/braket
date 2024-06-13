@@ -13,7 +13,7 @@ Any [MPI](https://www.mpi-forum.org/) libaries are also required if you would li
 You can retrieve the current status of **braket** by cloning the repository:
 
 ```bash
-$ git clone --recursive https://github.com/mdepasca/braket.git
+git clone --recursive https://github.com/mdepasca/braket.git
 ```
 
 ## Using *bra*
@@ -21,8 +21,8 @@ $ git clone --recursive https://github.com/mdepasca/braket.git
 On the `bra/` directory, you can compile *bra* via:
 
 ```
-$ cd braket/bra
-$ make nompi
+cd braket/bra
+make nompi
 ```
 
 The binary file `bra` is present on `bin/` directory.
@@ -30,16 +30,16 @@ The binary file `bra` is present on `bin/` directory.
 If you would like to compile MPI-supported bra, then just make without any options:
 
 ```
-$ make
+make
 ```
 
 The files `qcx/hadamards08.qcx` and `qcx/adder6x2.qcx` are sample "quantum assembler" codes.
 You can test those assembler codes via:
 
 ```
-$ ./bin/bra -f qcx/hadamards08.qcx 1> stdout 2> stderr # 1.
-$ mpiexec -np 4 ./bin/bra --mode simple --file qcx/hadamards08.qcx 1> stdout 2> stderr # 2.
-$ mpiexec -np 6 ./bin/bra --mode unit --file qcx/hadamards08.qcx --unit-qubits 3 --unit-processes 3 1> stdout 2> stderr # 3.
+./bin/bra -f qcx/hadamards08.qcx 1> stdout 2> stderr # 1.
+mpiexec -np 4 ./bin/bra --mode simple --file qcx/hadamards08.qcx 1> stdout 2> stderr # 2.
+mpiexec -np 6 ./bin/bra --mode unit --file qcx/hadamards08.qcx --unit-qubits 3 --unit-processes 3 1> stdout 2> stderr # 3.
 ```
 
 Each command corresponds to:
@@ -94,6 +94,6 @@ int main(int argc, char* argv[])
 ```
 
 ```bash
-$ mpiCC -I${HOME}/braket/ket/include -I${HOME}/braket/yampi/include -DKET_PRINT_LOG -DNDEBUG -O3 test.cpp
+mpiCC -I${HOME}/braket/ket/include -I${HOME}/braket/yampi/include -DKET_PRINT_LOG -DNDEBUG -O3 test.cpp
 ```
 
