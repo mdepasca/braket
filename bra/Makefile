@@ -16,7 +16,7 @@ build_dir = $(pwd)/build
 bin_dir = $(pwd)/bin
 
 library_dirs = $(KET_DIR) $(YAMPI_DIR) $(CXXOPTS_DIR) $(FMT_DIR)
-idirs = $(include_dir) $(addsuffix /include,$(library_dirs))
+idirs = $(include_dir) $(addsuffix /include,$(library_dirs)) $(BOOST_INCDIR)
 ldirs = $(addsuffix /lib,$(library_dirs))
 
 sources := $(shell find $(src_dir) -name *.cpp)
@@ -64,7 +64,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-release: CXX = FCCpx
 nompi-release: common_flags += -Nclang
 else
-nompi-release: CXX = g++
+nompi-release: CXX = clang++
 endif
 nompi-release: common_flags += -Ofast
 nompi-release: macros += NDEBUG BRA_NO_MPI
@@ -75,7 +75,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-debug: CXX = FCCpx
 nompi-debug: common_flags += -Nclang
 else
-nompi-debug: CXX = g++
+nompi-debug: CXX = clang++
 endif
 nompi-debug: common_flags += -O0
 nompi-debug: macros += BRA_NO_MPI
@@ -105,7 +105,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-release-float: CXX = FCCpx
 nompi-release-float: common_flags += -Nclang
 else
-nompi-release-float: CXX = g++
+nompi-release-float: CXX = clang++
 endif
 nompi-release-float: common_flags += -Ofast
 nompi-release-float: macros += NDEBUG BRA_NO_MPI BRA_REAL_TYPE=2
@@ -116,7 +116,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-debug-float: CXX = FCCpx
 nompi-debug-float: common_flags += -Nclang
 else
-nompi-debug-float: CXX = g++
+nompi-debug-float: CXX = clang++
 endif
 nompi-debug-float: common_flags += -O0
 nompi-debug-float: macros += BRA_NO_MPI BRA_REAL_TYPE=2
@@ -146,7 +146,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-release-long: CXX = FCCpx
 nompi-release-long: common_flags += -Nclang
 else
-nompi-release-long: CXX = g++
+nompi-release-long: CXX = clang++
 endif
 nompi-release-long: common_flags += -Ofast
 nompi-release-long: macros += NDEBUG BRA_NO_MPI BRA_REAL_TYPE=0
@@ -157,7 +157,7 @@ ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-debug-long: CXX = FCCpx
 nompi-debug-long: common_flags += -Nclang
 else
-nompi-debug-long: CXX = g++
+nompi-debug-long: CXX = clang++
 endif
 nompi-debug-long: common_flags += -O0
 nompi-debug-long: macros += BRA_NO_MPI BRA_REAL_TYPE=0
