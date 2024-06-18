@@ -62,6 +62,7 @@ nompi: nompi-release
 .PHONY: nompi-release
 ifneq ($(findstring fn01sv,$(nodename)),)
 nompi-release: CXX = FCCpx
+nompi-release: cxx_flags += -pthread -lpthread
 nompi-release: common_flags += -Nclang
 else
 nompi-release: CXX = clang++
@@ -166,9 +167,9 @@ nompi-debug-long: $(bin_dir)/$(target)
 ifneq ($(findstring fn01sv,$(nodename)),)
   CXX = mpiFCCpx
 else
-  CXX = mpiCC
+  CXX = mpiCC -cxx=clang++
 endif
-common_flags = -fopenmp -std=c++17 -Wall
+common_flags = -openmp -std=c++17 -Wall
 cxx_flags =
 
 $(bin_dir)/$(target): $(objects)
@@ -186,4 +187,3 @@ clean:
 	$(RM) -r $(build_dir) $(bin_dir) $(distfile)
 
 mkdir_p ?= mkdir -p
-
